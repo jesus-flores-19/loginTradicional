@@ -4,26 +4,27 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-4 login-card">
+    <div class="col-10 col-sm-8 col-md-4 login-card">
         <div class="text-center">
             <p class="login-Title">CREAR CUENTA NUEVA</p>
         </div>
-        <form #formulario (ngSubmit)="onSubmit()">
+        <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
             <div class="form-floating mt-4">
-                <input type="text" class="form-control form-control-sm" id="userForm" placeholder=" " aria-describedby="userVal">
-                <label for="userForm">Email</label>
-                <!-- <small id="userVal" class="form-text text-danger">Usuario Incorrecto</small> -->
-            </div>
-            <div class="form-floating mt-4">
-                <input type="text" class="form-control form-control-sm" id="userForm" placeholder=" " aria-describedby="userVal">
-                <label for="userForm">Nombre</label>
-                <!-- <small id="userVal" class="form-text text-danger">Usuario Incorrecto</small> -->
+                <input type="text" required email class="form-control form-control-sm" [(ngModel)]="user.email" id="emailForm" name="email" placeholder=" " aria-describedby="userVal">
+                <label for="emailForm">Email</label>
+                <small id="userVal" *ngIf="formulario.submitted && formulario.form.controls.email.errors" class="form-text text-danger">Ingrese correctamente el email</small>
             </div>
             <div class="form-floating mt-3">
-                <input type="password" class="form-control form-control-sm" id="userPass" placeholder=" ">
-                <label for="userPass">Password</label>
+                <input type="text" class="form-control form-control-sm" required minlength="2" [(ngModel)]="user.nombre" id="nombreForm" name="nombre" placeholder=" " aria-describedby="userVal">
+                <label for="nombreForm">Nombre</label>
+                <small id="userVal" class="form-text text-danger" *ngIf="formulario.submitted && formulario.form.controls.nombre.errors">Ingrese el nombre</small>
             </div>
-            <button class="btn  w-100 mt-4" type="submit">Ingresar</button>
+            <div class="form-floating mt-3">
+                <input type="password" class="form-control form-control-sm" name="pass" required minlength="5" [(ngModel)]="user.password" id="userPass" placeholder=" ">
+                <label for="userPass">Password</label>
+                <small id="userVal" class="form-text text-danger" *ngIf="formulario.submitted && formulario.form.controls.pass.errors">Ingrese una contraseña</small>
+            </div>
+            <button class="btn  w-100 mt-5" type="submit">Ingresar</button>
         </form>
     </div>
 </div>
