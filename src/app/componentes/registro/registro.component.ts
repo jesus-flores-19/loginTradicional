@@ -12,4 +12,8 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(){
+    alert("huevos")
+  }
+
 }
