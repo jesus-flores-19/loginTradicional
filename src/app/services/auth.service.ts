@@ -65,5 +65,9 @@ export class AuthService {
     }
     return this.idToken;
   }
+  
+  existsToken(){
+    return this.idToken.length > 2;
+  }
 
 }
