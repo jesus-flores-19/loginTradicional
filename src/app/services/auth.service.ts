@@ -23,10 +23,13 @@ export class AuthService {
       password: usuario.password,
       returnSecureToken: true
     }
+    let hoy = new Date();
+    hoy.setSeconds(3600)
     return this.http.post(`${this.url_api}signInWithPassword?key=${this.api_key}`, data)
             .pipe( map(
               (data: any) => {
                 this.guardarToken(data.idToken);
+                localStorage.setItem("expira", hoy.getTime().toString())
                 return data;
               }
             ))
@@ -43,10 +46,13 @@ export class AuthService {
       password: usuario.password,
       returnSecureToken: true
     }
+    let hoy = new Date();
+    hoy.setSeconds(3600)
     return this.http.post(`${this.url_api}signUp?key=${this.api_key}`, data)
             .pipe( map(
               (data: any) => {
                 this.guardarToken(data.idToken);
+                localStorage.setItem("expira", hoy.getTime().toString())
                 return data;
               }
             ))
@@ -67,7 +73,19 @@ export class AuthService {
   }
   
   existsToken(){
-    return this.idToken.length > 2;
+    
+    if(this.idToken.length < 2){
+      return false;
+    }
+    const expira = Number(localStorage.getItem("expira"))
+    const expiraDate = new Date();
+    expiraDate.setTime(expira);
+    if( expiraDate > new Date()){
+      return true
+    }else{
+      console.log("El token ya expiro");
+      return false
+    }
   }
 
 }
