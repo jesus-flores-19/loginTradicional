@@ -38,6 +38,8 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("token")
+    this.idToken=""
+    localStorage.removeItem("expira")
   }
 
   nuevoUsuario(usuario: usuarioModel){
@@ -73,7 +75,6 @@ export class AuthService {
   }
   
   existsToken(){
-    
     if(this.idToken.length < 2){
       return false;
     }
