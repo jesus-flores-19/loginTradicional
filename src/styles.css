@@ -19,6 +19,11 @@ label {
     color: #9c9c9c;
 }
 
+.login-cuenta {
+    color: rgb(112, 112, 223);
+    text-decoration: none;
+}
+
 .btn {
     background-color: rgba(132, 132, 252, 1);
     color: rgba(255, 255, 255, 0.7);
@@ -42,4 +47,34 @@ label {
 .btn:focus {
     background-color: rgb(112, 112, 223);
     color: white;
+}
+
+
+/* Animaciones */
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
 }
