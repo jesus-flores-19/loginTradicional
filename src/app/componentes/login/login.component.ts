@@ -18,8 +18,16 @@ export class LoginComponent implements OnInit {
   }
 
   user: usuarioModel;
+  recordar: boolean = false;
 
   ngOnInit(): void {
+    if(localStorage.getItem("email")){
+      const email: any = localStorage.getItem("email")
+      localStorage.removeItem("email")
+      
+      this.user.email = email; 
+      this.recordar = true;
+    }
   }
 
   onSubmit(form: NgForm){
@@ -36,6 +44,9 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.user).subscribe(
       (data: any) => {
         console.log(data);
+        if(this.recordar){
+          localStorage.setItem("email", this.user.email)
+        }
         Swal.close();
         this.router.navigate(["home"])
       },(err: any) => {

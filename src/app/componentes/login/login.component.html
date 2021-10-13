@@ -1,5 +1,5 @@
 <div class="row justify-content-center animated fadeIn">
-    <div class="col-10 col-sm-8 col-md-4 login-card">
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 login-card">
         <div class="text-center">
             <p class="login-Title">LOGIN</p>
         </div>
@@ -15,8 +15,14 @@
                 <label for="userPass ">Password</label>
                 <small id="userVal " class="form-text text-danger" *ngIf="formulario.submitted && formulario.form.controls.pass.errors">Ingrese el password</small>
             </div>
-            <div class="text-center mt-2 ">
-                <a routerLink="/registro" class="login-cuenta ">¿No tienes cuenta? / Crear una</a>
+            <div class="d-flex mt-2 justify-content-between">
+                <div class="form-group">
+                    <input type="checkbox" [(ngModel)]="recordar" class="login-checbox" name="recordarUser" id="recordarUser">
+                    <span class="ms-2">Recordar Usuario</span>
+                </div>
+                <div>
+                    <a routerLink="/registro" class="login-cuenta ">Crear una cuenta</a>
+                </div>
             </div>
             <button class="btn w-100 mt-4 ">Ingresar</button>
         </form>
